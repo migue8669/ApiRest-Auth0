@@ -1,0 +1,47 @@
+
+
+subprojects {
+    apply plugin: "java"
+    apply plugin: "jacoco"
+    apply plugin: 'io.spring.dependency-management'
+
+
+
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+
+    }
+
+    dependencies {
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'org.springframework.boot:spring-boot-starter-security'
+        testImplementation 'io.projectreactor:reactor-test'
+        implementation 'io.projectreactor:reactor-core'
+        implementation 'org.springframework.boot:spring-boot-starter-security'
+        implementation 'org.reactivecommons.utils:object-mapper-api:0.1.0'
+        implementation 'org.reactivecommons:domain-events-api:0.0.7-beta1'
+        implementation 'io.projectreactor.addons:reactor-extra'
+        implementation 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+        testCompileOnly 'org.projectlombok:lombok'
+
+        compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+        compile 'org.springframework.security:spring-security-oauth2-jose'
+        compile 'org.springframework.security:spring-security-oauth2-resource-server'
+    }
+
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+}
+

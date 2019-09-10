@@ -1,0 +1,36 @@
+
+buildscript {
+	ext {
+		springBootVersion = '2.2.0.M2'
+		springCloudVersion = 'Greenwich.M1'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/milestone" }
+		maven { url "https://repo.spring.io/snapshot" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+plugins {
+	id "org.sonarqube" version "2.7"
+	id "jacoco"
+}
+
+
+sonarqube {
+	properties {
+		property "sonar.projectName", "administracion"
+		property "sonar.projectKey", "administracion"
+		//property "sonar.organization", "sofkatest"
+	//	property "sonar.host.url", "https://sonarcloud.io"
+	//	property "sonar.login", "173699a988c6e0976dd0495064f57fe058a1548e"
+		property "sonar.java.source", "1.6"
+		property "sonar.java.target", "1.6"
+		property "sonar.jacoco.reportPaths", "${buildDir}/jacoco/test.exec"
+	}
+}
+
+apply from: './main.gradle'

@@ -1,0 +1,10 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile project(":entry-points-reactive-web")
+    compile project(":driven-adapter-vuelo-repository")
+    compile project(":domain-usecase")
+    compile project(":helpers-observability-helper")
+    compile 'org.reactivecommons.utils:object-mapper:0.1.0'
+    runtime('org.springframework.boot:spring-boot-devtools')
+}

@@ -1,0 +1,8 @@
+dependencies {
+
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile group: 'io.micrometer', name: 'micrometer-registry-prometheus'
+    compile group: 'de.codecentric', name: 'spring-boot-admin-starter-client', version: '2.1.0'
+    compile 'io.projectreactor:reactor-logback:2.0.8.RELEASE'
+
+}
