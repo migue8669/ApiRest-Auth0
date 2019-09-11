@@ -44,29 +44,34 @@
       </nz-breadcrumb>
 
       <nz-content>
-          
+
          <button nz-button nzType="primary" style="margin: 8px;"  (click)="open()">Create</button>
-        
-        <nz-table #nestedTable [nzData]="AllBill" [nzPageSize]="5"  >
+
+        <nz-table #nestedTable [nzData]="AllVuelo" [nzPageSize]="5"  >
       <thead>
         <tr>
             <th>#</th>
-            <th>Cliente</th>
-            <th>Lider</th>
-            <th>Telefono</th>
-            <th>Action</th>
+            <th>Pasajero</th>
+            <th>Desde</th>
+            <th>Destino</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+
           </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let bills  of nestedTable.data">
+        <tr *ngFor="let vuelo of nestedTable.data">
 
-          <td>{{bills.idBillClients}}</td>
-          <td>{{bills.nameClients}}</td>
-          <td>{{bills.companyLeaders}}</td>
-          <td>{{bills.telephoneClients}}</td>
+          <td>{{vuelo.pasajero}}</td>
+          <td>{{vuelo.Desde}}</td>
+          <td>{{vuelo.Destino}}</td>
+          <td>{{vuelo.Fecha}}</td>
+          <td>{{vuelo.Hora}}</td>
+
+
           <td>
-            <a><button nz-button [nzType]="'primary'" style="margin-right: 8px;" (click)="showModal(bills)"><span>Edit</span></button></a>
-            <a><button nz-button nzType="dashed" (click)="showDeleteConfirm(bills)">Delete</button></a>
+            <a><button nz-button [nzType]="'primary'" style="margin-right: 8px;" (click)="showModal(vuelo)"><span>Edit</span></button></a>
+            <a><button nz-button nzType="dashed" (click)="showDeleteConfirm(vuelo)">Delete</button></a>
           </td>
 
         </tr>
@@ -80,8 +85,8 @@
           [nzVisible]="visible"
           nzTitle="Crear Factura"
           (nzOnClose)="close()">
-          
-        <app-add-bill></app-add-bill>
+
+        <app-add-vuelo></app-add-vuelo>
        </nz-drawer>
        {{respuesta2 | json}}
         <nz-modal  [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
@@ -90,7 +95,7 @@
                     <nz-form-item>
                       <nz-form-label>Id</nz-form-label>
                       <nz-form-control>
-                          <input nz-input type="text" [(ngModel)] = "bill.idBillClients" placeholder="Nombre" />
+                          <input nz-input type="text" [(ngModel)] = "vuelo.idVuelo" placeholder="Numero de vuelo" />
                       </nz-form-control>
                     </nz-form-item>
                   </div>
@@ -98,7 +103,7 @@
                     <nz-form-item>
                       <nz-form-label>Nombre</nz-form-label>
                       <nz-form-control>
-                          <input nz-input [(ngModel)] = "bill.nameClients" placeholder="Nombre" />
+                          <input nz-input [(ngModel)] = "vuelo.pasajero" placeholder="Pasajero" />
                       </nz-form-control>
                     </nz-form-item>
                   </div>
@@ -107,17 +112,17 @@
                 <div nz-row nzGutter="8">
                   <div nz-col nzSpan="12">
                     <nz-form-item>
-                      <nz-form-label>Lider</nz-form-label>
+                      <nz-form-label>Destino</nz-form-label>
                       <nz-form-control>
-                          <input nz-input [(ngModel)] = "bill.companyLeaders" placeholder="Lider empresa" />
+                          <input nz-input [(ngModel)] = "vuelo.Destino" placeholder="Destino" />
                       </nz-form-control>
                     </nz-form-item>
                   </div>
                   <div nz-col nzSpan="12">
                     <nz-form-item>
-                      <nz-form-label>Telefono</nz-form-label>
+                      <nz-form-label>Desde</nz-form-label>
                       <nz-form-control>
-                          <input nz-input [(ngModel)] = "bill.telephoneClients" placeholder="Telefono" />
+                          <input nz-input [(ngModel)] = "vuelo.Desde" placeholder="Desde" />
                       </nz-form-control>
                     </nz-form-item>
                   </div>
@@ -126,69 +131,22 @@
                 <div nz-row nzGutter="8">
                   <div nz-col nzSpan="12">
                     <nz-form-item>
-                      <nz-form-label>Direccion</nz-form-label>
+                      <nz-form-label>Fecha</nz-form-label>
                       <nz-form-control>
-                          <input nz-input [(ngModel)] = "bill.addressClients" placeholder="Direccion" />
+                          <input nz-input [(ngModel)] = "vuelo.Fecha" placeholder="Fecha" />
                       </nz-form-control>
                     </nz-form-item>
                   </div>
                   <div nz-col nzSpan="12">
                     <nz-form-item>
-                      <nz-form-label>Ciudad</nz-form-label>
+                      <nz-form-label>Hora</nz-form-label>
                       <nz-form-control>
-                          <input nz-input [(ngModel)] = "bill.cityClients" placeholder="Ciudad cliente" />
+                          <input nz-input [(ngModel)] = "vuelo.Hora" placeholder="Hora" />
                       </nz-form-control>
                     </nz-form-item>
                   </div>
                 </div>
 
-                <div nz-row nzGutter="8">
-                    <div nz-col nzSpan="12">
-                      <nz-form-item>
-                        <nz-form-label>Moneda</nz-form-label>
-                        <nz-form-control>
-                            <input nz-input [(ngModel)] = "bill.currencyToPays" placeholder="Moneda a pagar" />
-                        </nz-form-control>
-                      </nz-form-item>
-                    </div>
-                    <div nz-col nzSpan="12">
-                      <nz-form-item>
-                        <nz-form-label>Total a pagar</nz-form-label>
-                        <nz-form-control>
-                            <input nz-input [(ngModel)] = "bill.fullPayments" placeholder="Total a pagar" />
-                        </nz-form-control>
-                      </nz-form-item>
-                    </div>
-                  </div>
-                  <div nz-row nzGutter="8">
-                  <div nz-col nzSpan="12">
-                    <nz-form-item>
-                      <nz-form-label>Cantidad horas</nz-form-label>
-                      <nz-form-control>
-                          <input nz-input [(ngModel)] = "bill.amountHourWorked" placeholder="Cantidad de horas" />
-                      </nz-form-control>
-                    </nz-form-item>
-                  </div>
-                  <div nz-col nzSpan="12">
-                    <nz-form-item>
-                      <nz-form-label>Descuento</nz-form-label>
-                      <nz-form-control>
-                          <input nz-input [(ngModel)] = "bill.discounts" placeholder="Descuento" />
-                      </nz-form-control>
-                    </nz-form-item>
-                  </div>
-                </div>
-
-                <div nz-row nzGutter="8">
-                  <div nz-col nzSpan="24">
-                    <nz-form-item>
-                      <nz-form-label>Descripcion</nz-form-label>
-                      <nz-form-control>
-                          <input nz-input [(ngModel)] = "bill.descriptionProducts" placeholder="Descripcion" />
-                      </nz-form-control>
-                    </nz-form-item>
-                  </div>
-                </div>
 
         </nz-modal>
       </nz-content>

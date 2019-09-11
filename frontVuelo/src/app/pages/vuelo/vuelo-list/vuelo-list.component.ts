@@ -16,7 +16,7 @@ export class VueloListComponent implements OnInit {
   getAllVueloApiSub: Subscription;
   AllBill: Vuelo[];
 
-  constructor(private msg: NzMessageService, private api: VueloService, private billsUseCase: VueloUseCaseService,
+  constructor(private msg: NzMessageService, private api: VueloService, private vueloUseCase: VueloUseCaseService,
     private modalService: NzModalService) { }
 
     ngOnInit(): void {

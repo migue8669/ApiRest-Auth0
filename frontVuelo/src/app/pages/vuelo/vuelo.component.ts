@@ -41,7 +41,7 @@ export class VueloComponent implements OnInit {
       });
   }
 
-  deleteBillsApi(vuelo): void {
+  deleteVueloApi(vuelo): void {
     this.deleteVueloApiSub = this.api.deleteVueloById(vuelo).subscribe(
       AllVuelo => { this.getAllVueloApi() });
   }
@@ -110,7 +110,7 @@ export class VueloComponent implements OnInit {
       nzContent: '<b style="color: red;">¿Realmente quiere eliminar esta factura?</b>',
       nzOkText: 'Yes',
       nzOkType: 'danger',
-      nzOnOk: () => this.deleteBillsApi(vuelo.idVuelo),
+      nzOnOk: () => this.deleteVueloApi(vuelo.idVuelo),
       nzCancelText: 'No',
       nzOnCancel: () => console.log('Cancel')
     });
